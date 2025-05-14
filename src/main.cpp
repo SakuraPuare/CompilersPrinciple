@@ -1,12 +1,12 @@
-#include <iostream>
-#include <fstream>
 #include "lexer.h"
 #include "parser.h"
+#include <fstream>
+#include <iostream>
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cerr << "Usage: " << argv[0] << " <filename>" << std::endl;
-    return 1;
+    // std::cerr << "Usage: " << argv[0] << " <filename>" << std::endl;
+    std::string file_path = "tests/examples/test_1.cpp";
   }
 
   std::ifstream file(argv[1]);

@@ -1,5 +1,10 @@
 #include "lexer.h"
 
+Lexer::Lexer(std::istream &is) : input_stream(is) {
+  readChar(); // 构造时读取第一个字符
+  current_token = getNextTokenInternal();
+}
+
 void Lexer::readChar() { 
   current_char = input_stream.get(); 
 }
@@ -182,11 +187,6 @@ Token Lexer::getNextTokenInternal() {
     std::string error_val(1, initial_char);
     return {TOKEN_ERROR, "Unrecognized character: " + error_val};
   }
-}
-
-Lexer::Lexer(std::istream &is) : input_stream(is) {
-  readChar(); // 构造时读取第一个字符
-  current_token = getNextTokenInternal();
 }
 
 Token Lexer::peekToken() { 
