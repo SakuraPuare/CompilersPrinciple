@@ -1,17 +1,25 @@
 #include "lexer.h"
 #include "parser.h"
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 
 int main(int argc, char **argv) {
+  std::string file_path = "";
   if (argc != 2) {
     // std::cerr << "Usage: " << argv[0] << " <filename>" << std::endl;
-    std::string file_path = "tests/examples/test_1.cpp";
+    file_path = "../../tests/example/test_1.cpp";
+  } else {
+    file_path = argv[1];
   }
 
-  std::ifstream file(argv[1]);
+  std::ifstream file(file_path);
   if (!file.is_open()) {
     std::cerr << "Error opening file!" << std::endl;
+    // getcwd
+    std::cout << std::filesystem::current_path() << std::endl;
+    // file absolute path
+    std::cout << std::filesystem::absolute(file_path) << std::endl;
     return 1;
   }
 
